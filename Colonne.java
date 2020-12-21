@@ -1,33 +1,38 @@
+import java.util.ArrayList;
 
 /**
  * Décrivez votre classe Colonne ici.
  *
- * @author (votre nom)
+ * @author JOLO Elodie, FEQQOUSSI Sarah
  * @version (un numéro de version ou une date)
  */
 public class Colonne
 {
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
-    private int x;
-
+    ArrayList<Colonne> liste_colonne = new ArrayList<Colonne>(); 
+    ArrayList<Case> liste_case = new ArrayList<Case>(); 
+    int index_dernière_libre;
+    
     /**
      * Constructeur d'objets de classe Colonne
      */
-    public Colonne()
+    public Colonne(int index_dernière_libre)
     {
         // initialisation des variables d'instance
-        x = 0;
+        this.index_dernière_libre = 0;
     }
 
     /**
      * Un exemple de méthode - remplacez ce commentaire par le vôtre
      *
-     * @param  y   le paramètre de la méthode
-     * @return     la somme de x et de y
+     * @param  index_dernière_libre   le paramètre initialisé à 0 et prend +1 à chaque fois qu'on pose un pion
+     * @return     true si la colonne est pleine, false sinon 
      */
-    public int sampleMethod(int y)
+    public boolean verifier_colonne_pleine(int index_dernière_libre)//Car index_dernière_libre est initialisé à 0 et a chaque fois qu'on pose un pion il prend +1
     {
-        // Insérez votre code ici
-        return x + y;
+        if (index_dernière_libre == 6) return true;
+         else return false;
+        
     }
+    
+    
 }
