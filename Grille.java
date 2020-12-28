@@ -8,7 +8,7 @@ public class Grille
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private final int colonne, ligne;
-    private Case[][] grille;
+    private Case[][] grille; //ou ArrayList<Colonne> grille;
     private int nb_pions;
 
     /**
