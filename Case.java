@@ -6,5 +6,23 @@
  */
 public enum Case
 {
-    VIDE, X, O
+    VIDE("_"), X("X"), O("O");
+    
+    //représentation de la case
+    private String rep;
+    
+    private Case(String rep)
+    {
+        this.rep=rep;
+    }
+    
+    /**
+     * constructeur pour récupérer le représentation de la case
+     * 
+     * @return rep représentation de la case
+     */
+    public String getRep()
+    {
+        return this.rep;
+    }
 }
