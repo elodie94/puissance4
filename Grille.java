@@ -72,4 +72,25 @@ public class Grille
        
    
     // }
+
+    /**
+     * afficher la grille
+     * 
+     */
+    public void afficher_grille()
+    {
+        //pour avoir les numéros de colonnes
+        for(int nc=1;nc<colonne;nc++){
+            System.out.print(nc);
+        }
+        System.out.println("");
+        //pour afficher le contenu de la grille
+        for(int i=0;i<ligne;i++){
+            System.out.print("|");
+            for(int j=0;j<colonne;j++){
+                System.out.print(grille[i][j]+"|");
+            }
+            System.out.println("");
+        }
+    }
 }
