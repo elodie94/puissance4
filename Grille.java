@@ -27,6 +27,13 @@ public class Grille
         this.colonne = colonne;
         this.ligne = ligne;
         grille=new Case[colonne][ligne];
+        
+        //initialiser la grille vide
+        for(int i=0;i<colonne;i++){
+            for(int j=0;j<ligne;j++){
+                grille[i][j]=Case.VIDE;
+            }
+        }
     }
     
     /**
