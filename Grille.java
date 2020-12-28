@@ -1,4 +1,3 @@
-
 /**
  * Classe représentant la grille du puissance 4
  *
@@ -18,15 +17,16 @@ public class Grille
     // public Grille(int c,int l)
     // {
         // // initialisation des variables d'instance
-        // this.colonne=7+2;
-        // this.ligne=6+2;
+        // this.colonne=c+2;
+        // this.ligne=l+2;
     // }
     
  
-    public Grille(int [][] grille, int colonne, int ligne)
+    public Grille(int colonne, int ligne)
     {
         this.colonne = colonne;
         this.ligne = ligne;
+        grille=new Case[colonne][ligne];
     }
     
     /**
@@ -54,8 +54,8 @@ public class Grille
      * @return              true si la grille est rempli, false sinon
      */
    public boolean grille_pleine (Case [][] grille){
-       for (int i = 0; i<7 ; i++){  // Colonne 
-           for (int j = 0; j<6; j++){// Lignes
+       for (int i = 0; i<7 /*colonne*/; i++){  // Colonne 
+           for (int j = 0; j<6 /*ligne*/; j++){// Lignes
                if (grille[i][j] != Case.VIDE) return false;
             }
         }
