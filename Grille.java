@@ -1,7 +1,7 @@
 /**
  * Classe représentant la grille du puissance 4
  *
- * @author (votre nom)
+ * @author JOLO Elodie, FEQQOUSSI Sarah
  * @version (un numéro de version ou une date)
  */
 public class Grille
