@@ -34,5 +34,11 @@ public class Colonne
         
     }
     
-    
+    public boolean ajout_pion (Joueur j, int index_colonne, ArrayList liste_case){ // A revoir 
+        if (index_colonne > 7 || index_dernière_libre >= 6) return false;
+        else {
+            liste_case.add (j.jeton_get());
+            return true;
+        }
+    }
 }
