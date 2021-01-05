@@ -1,10 +1,11 @@
 import java.util.Scanner;
+import java.io.*;
+import java.util.ArrayList;
 /**
  * Classe qui va permettre de choisir le type de jeu voulu par l'utilisateur
  *
 import java.util.Scanner;
-import java.io.*;
-import java.util.ArrayList;
+
 /**
  * Classe qui va permettre de choisir le type de jeu voulu par l'utilisateur
  *
