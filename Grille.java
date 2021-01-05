@@ -188,3 +188,11 @@ public class Grille
         }
     }
 }
+
+public int getColonne(){
+    return this.colonne;
+}
+    
+public int getLigne(){
+    return this.ligne;
+}
