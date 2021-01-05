@@ -17,27 +17,34 @@ public class Jeu
     public static void sauvegarder(String nom_sauv,Grille g,Case [][] grille)
     {
         try {
-            ArrayList data=new ArrayList();
+            ArrayList<Character> data=new ArrayList<Character>();
             
             data.add('*');
-            data.add(g.getColonne());
+            char col=(char) (g.getColonne()+'0');
+            data.add(col);
             data.add(' ');
-            data.add(g.getLigne());
+            char li=(char) (g.getLigne()+'0');
+            data.add(li);
             for(int l=0;l<g.getLigne();l++){
                 for(int c=0;c<g.getColonne();c++){
-                    if(grille[c][l]!=Case.VIDE) data.add(grille[c][l]);
+                    if(grille[c][l]!=Case.VIDE) data.add(grille[c][l].getRep());
                 }
                 data.add(' ');
             }
-            FileOutputStream fileOut = new FileOutputStream(nom_sauv);
-            ObjectOutputStream oos = new ObjectOutputStream(fileOut);
-            oos.writeObject(data);
-            oos.close();
-            fileOut.close();
+            data.add(' ');
+            data.add('*');
+            
+            File f=new File(nom_sauv);
+            FileWriter fw=new FileWriter(f);
+            for(char elmt : data){
+                fw.write(elmt);
+                fw.flush();
+            }
+            
+            fw.close();
+            
             System.out.println("Sauvegarde terminée");
  
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
