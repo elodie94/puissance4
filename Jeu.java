@@ -73,11 +73,11 @@ public class Jeu
     
     public static int taille_colonne(){
         Scanner s=new Scanner(System.in);
-        System.out.println("Entrez la hauteur de la grille (>=4) :");
+        System.out.println("Entrez le nombre de colonne de la grille (>=4) :");
         int ligne=s.nextInt();
         
         while(ligne<4){ 
-             System.out.println("Entrez la hauteur de la grille (>=4) :");
+             System.out.println("Entrez le nombre de ligne de la grille (>=4) :");
              return ligne=s.nextInt();
         }
        return ligne;
