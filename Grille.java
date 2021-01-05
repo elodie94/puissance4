@@ -89,16 +89,41 @@ public class Grille
         }
     }
     
-           /**
+            /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire
      *
-     * @param  [][]grille   la grille dont on veut savoir si elle est pleine ou non
-     * @return              0 si il y'a match nulle, 1 si le joueur aux pions X a gagné et 2 si je joueur aux pions O a gagné
+     * @param  [][]grille   la grille dans laquelle les joueurs jouent
+     * @param  colonne      la colonne choisi par le joueur 
+     * @return              un String annoncant le vainqueur/ un match nul 
      */
-  // public int detection_victoire (Case[][]grille){
-       
-   
-    // }
+    public String detection_victoire (Case[][]grille, int colonne, Joueur j ){
+        // Detection de victoire à l'horizontale
+        if (ajout_pion (j,grille,colonne) >-1){
+            int ligne = ajout_pion (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
+            
+            if (detection_victoire_horizontale ( grille, colonne, ligne) == true) return "Le joueur"+j+"est le vainqueur";
+            
+        }
+        return "Match nul";
+    }
+    
+    public boolean detection_victoire_horizontale (Case[][]grille, int colonne, int ligne){
+        int repetition = 1;
+        for (int i = colonne;  0<=i && i < 6; i++){ //Vers la droite
+            if (grille [i][ligne] == grille [i+1][ligne] ){
+                repetition ++;
+            }
+          }
+          
+        for (int j = colonne;  1<=j && j < 7; j++){ //Vers la gauche
+            if (grille [j][ligne] == grille [j-1][ligne] ){
+                repetition ++;
+            }
+          }
+          
+        if (repetition >= 4) return true;
+        else return false;
+    }
     
     
 
