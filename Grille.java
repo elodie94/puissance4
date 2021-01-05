@@ -197,3 +197,7 @@ public int getLigne(){
     return this.ligne;
   }
 }
+
+public Case[][] getGrille(){
+    return this.grille;
+}
