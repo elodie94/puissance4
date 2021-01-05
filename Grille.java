@@ -39,7 +39,7 @@ public class Grille
     public boolean verifier_colonne (Case [][]grille, int colonne){
         if (colonne > 7) return true;
         else { 
-            for (int i = 0; i<6; i++){
+            for (int i = 0; i< grille[colonne].length; i++){
                 if (grille[colonne][i] == Case.VIDE)return false; 
             }
         return true;
@@ -55,8 +55,8 @@ public class Grille
      */
     
     public boolean grille_pleine (Case [][] grille){
-       for (int i = 0; i<7 /*colonne*/; i++){  // Colonne 
-           for (int j = 0; j<6 /*ligne*/; j++){// Lignes
+       for (int i = 0; i<grille.length; i++){  // Colonne 
+           for (int j = 0; j< grille[i].length /*ligne*/; j++){// Lignes
                if (grille[i][j] != Case.VIDE) return false;
             }
         }
@@ -64,7 +64,7 @@ public class Grille
     }
    
     
-               /**
+              /**
      * Cette methode permet au joueur d'ajouter un pion 
      *
      * @param  j            Joueur qui doit jouer 
@@ -77,7 +77,7 @@ public class Grille
         if (verifier_colonne(grille , colonne) == false) { // Dans le cas ou la colonne est remplie
             System.out.println("Cette colonne est déja rempli");
             return -1;
-       }
+        }
        else { //Dans le cas ou il reste une place de libre dans la colonne
             for (int i = 0; i<6; i++){
                if (grille[colonne][i] != Case.VIDE){ 
@@ -89,7 +89,7 @@ public class Grille
         }
     }
     
-           /**
+          /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire
      *
      * @param  [][]grille   la grille dans laquelle les joueurs jouent
@@ -112,7 +112,8 @@ public class Grille
     }
     
     
-             /**
+             
+    /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à l'horizontale
      *
      * @param  [][]grille   la grille dans laquelle les joueurs jouent
@@ -123,13 +124,13 @@ public class Grille
     
     public boolean detection_victoire_horizontale (Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = colonne;  0<=i && i < 6; i++){ //Vers la droite
+        for (int i = colonne;  0<=i && i < grille.length; i++){ //Vers la droite
             if (grille [i][ligne] == grille [i+1][ligne] ){
                 repetition ++;
             }
           }
           
-        for (int j = colonne;  1<=j && j < 7; j++){ //Vers la gauche
+        for (int j = colonne;  1<=j && j < grille.length -1; j++){ //Vers la gauche
             if (grille [j][ligne] == grille [j-1][ligne] ){
                 repetition ++;
             }
@@ -150,13 +151,13 @@ public class Grille
     
     public boolean detection_victoire_verticale (Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = ligne;  0<=i && i < 5; i++){ //Vers la droite
+        for (int i = ligne;  0<=i && i < grille[colonne].length; i++){ //Vers la droite
             if (grille [colonne][i] == grille [colonne][i+1] ){
                 repetition ++;
             }
           }
           
-        for (int j = ligne;  1<=j && j < 6; j++){ //Vers la gauche
+        for (int j = ligne;  1<=j && j < grille[colonne].length; j++){ //Vers la gauche
             if (grille [colonne][j] == grille [colonne][j-1] ){
                 repetition ++;
             }
@@ -190,16 +191,16 @@ public class Grille
     }
 
 
-  public int getColonne(){
+   public int getColonne(){
     return this.colonne;
-  }
+   }
     
-  public int getLigne(){
+   public int getLigne(){
     return this.ligne;
   
-  }
+   }
 
-  public Case[][] getGrille(){
+   public Case[][] getGrille(){
     return this.grille;
-  }
+   }
 }
