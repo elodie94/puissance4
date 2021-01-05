@@ -182,7 +182,8 @@ public class Grille
         for(int i=0;i<ligne;i++){
             System.out.print("|");
             for(int j=0;j<colonne;j++){
-                System.out.print(grille[i][j]+"|");
+                //modif ici
+                System.out.print(grille[j][i]+"|");
             }
             System.out.println("");
         }
