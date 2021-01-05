@@ -75,23 +75,27 @@ public class Jeu
         //afficher la liste et reprendre la partie
     }
     
-    public static Grille taille_grille(){
+    public static int taille_colonne(){
         Scanner s=new Scanner(System.in);
         System.out.println("Entrez la hauteur de la grille (>=4) :");
         int ligne=s.nextInt();
+        
         while(ligne<4){ 
              System.out.println("Entrez la hauteur de la grille (>=4) :");
-             ligne=s.nextInt();
+             return ligne=s.nextInt();
         }
-        
+       return ligne;
+    }
+    
+    public static int taille_ligne(){
+        Scanner s=new Scanner(System.in);
         System.out.println("Entrez la largeur de la grille(>=4) :");
         int colonne=s.nextInt();
         while(colonne<4){
             System.out.println("Entrez la largeur de la grille(>=4) :");
-            colonne=s.nextInt();
+            return colonne=s.nextInt();
         }
-                
-        return new Grille(colonne,ligne);
+        return colonne;
     }
     
     public static void main(String[] Args)
@@ -120,7 +124,11 @@ public class Jeu
                 PartieH_H partie=new PartieH_H(j1,j2);
                 jeulance=true;
                 //choisir la taille de la grille ou une sauvegarde
-                taille_grille().afficher_grille();
+                int c=taille_colonne();
+                int l=taille_ligne();
+                Grille g=new Grille(c,l);
+                g.afficher_grille();
+                sauvegarder("s",g,g.getGrille());
                 //deuxieme cas
             }else if(jeton1.equals("0")==true){
                 System.out.println("Saisissez le nom du deuxième joueur :");
