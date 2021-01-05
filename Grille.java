@@ -190,15 +190,16 @@ public class Grille
     }
 
 
-public int getColonne(){
+  public int getColonne(){
     return this.colonne;
   }
     
-public int getLigne(){
+  public int getLigne(){
     return this.ligne;
+  
   }
-}
 
-public Case[][] getGrille(){
+  public Case[][] getGrille(){
     return this.grille;
+  }
 }
