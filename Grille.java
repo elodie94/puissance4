@@ -102,10 +102,24 @@ public class Grille
             int ligne = ajout_pion (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
             
             if (detection_victoire_horizontale ( grille, colonne, ligne) == true) return "Le joueur"+j+"est le vainqueur";
+            if (detection_victoire_verticale( grille, colonne, ligne) == true) return "Le joueur"+j+"est le vainqueur";
             
+            //Ici il manque la detection de victoire diagonale
+            
+            if (grille_pleine (grille) == true) return "La partie se termine en match nul";
         }
-        return "Match nul";
+        return "Vous pouvez continuer la partie";
     }
+    
+    
+             /**
+     * Cette methode nous permet de détecter s'il y'a eu une victoire à l'horizontale
+     *
+     * @param  [][]grille   la grille dans laquelle les joueurs jouent
+     * @param  colonne      la colonne dans laquelle le jeton a été ajouté  
+     * @param  ligne        la ligne dans laquelle le jeton a été ajouté 
+     * @return              true si il y'a victoire, false sinon
+     */
     
     public boolean detection_victoire_horizontale (Case[][]grille, int colonne, int ligne){
         int repetition = 1;
@@ -117,6 +131,33 @@ public class Grille
           
         for (int j = colonne;  1<=j && j < 7; j++){ //Vers la gauche
             if (grille [j][ligne] == grille [j-1][ligne] ){
+                repetition ++;
+            }
+          }
+          
+        if (repetition >= 4) return true;
+        else return false;
+    }
+    
+                 /**
+     * Cette methode nous permet de détecter s'il y'a eu une victoire à la verticale
+     *
+     * @param  [][]grille   la grille dans laquelle les joueurs jouent
+     * @param  colonne      la colonne dans laquelle le jeton a été ajouté  
+     * @param  ligne        la ligne dans laquelle le jeton a été ajouté 
+     * @return              true si il y'a victoire, false sinon
+     */
+    
+    public boolean detection_victoire_verticale (Case[][]grille, int colonne, int ligne){
+        int repetition = 1;
+        for (int i = ligne;  0<=i && i < 5; i++){ //Vers la droite
+            if (grille [colonne][i] == grille [colonne][i+1] ){
+                repetition ++;
+            }
+          }
+          
+        for (int j = ligne;  1<=j && j < 6; j++){ //Vers la gauche
+            if (grille [colonne][j] == grille [colonne][j-1] ){
                 repetition ++;
             }
           }
