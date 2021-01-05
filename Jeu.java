@@ -1,10 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
-/**
- * Classe qui va permettre de choisir le type de jeu voulu par l'utilisateur
- *
-import java.util.Scanner;
 
 /**
  * Classe qui va permettre de choisir le type de jeu voulu par l'utilisateur
@@ -106,7 +102,7 @@ public class Jeu
         String nomj1=scanner.nextLine();
         
         //choisir le jeton du premier joueur
-        System.out.println("Joueur"+nomj1+", choisissez un jeton parmi X et O :");
+        System.out.println("Joueur "+nomj1+", choisissez un jeton parmi X et O :");
         String jeton1=scanner.nextLine();
         
         
@@ -130,16 +126,22 @@ public class Jeu
                 g.afficher_grille();
                 sauvegarder("s",g,g.getGrille());
                 //deuxieme cas
-            }else if(jeton1.equals("0")==true){
+            }else if(jeton1.equals("O")==true){
                 System.out.println("Saisissez le nom du deuxième joueur :");
                 String nomj2=scanner.nextLine();
                 Joueur j1=new Joueur(true,nomj1,Case.O);
                 Joueur j2=new Joueur(true,nomj2,Case.X);
                 PartieH_H partie=new PartieH_H(j1,j2);
                 jeulance=true;
+                
+                int c=taille_colonne();
+                int l=taille_ligne();
+                Grille g=new Grille(c,l);
+                g.afficher_grille();
+                sauvegarder("s",g,g.getGrille());
                 //3eme cas: si le format du jeton est pas bon on redemande et la bpucle recommence
             }else{
-                System.out.println("Rentrez le bon format de jeton");
+                System.out.println("Le format entré n'est pas bon, choisissez un jeton parmi X et O");
                 jeton1=scanner.nextLine();
                 jeulance=false;
             }
