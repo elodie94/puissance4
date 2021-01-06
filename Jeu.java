@@ -168,33 +168,40 @@ public class Jeu
         
         Joueur jcour=new Joueur(j1);
         while(arret_jeu==false){
-            //échanger joueur
-            
-            
+            if(jcour.equals(j1)){
+                jcour=j2;
+            }else{
+                jcour=j1;
+            }
             /*if(scanner.nextLine().equals("S")){
                 sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
                 arret_jeu=true;
             }*/
             
-            System.out.println(j1.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
+            System.out.println(jcour.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
             int coloj=scanner.nextInt();
+            saut_ligne();
+            
             while(coloj>tc){
                 System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
                 coloj=scanner.nextInt();
             }
         
-            while(gr.ajout_pion(j1, gr.getGrille(),coloj) == false){
-                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
+            while(gr.ajout_pion(jcour, gr.getGrille(),coloj) == false){
+                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc+" sauf "+coloj);
                 coloj=scanner.nextInt();
             }
         
             gr.afficher_grille();
             
-            if(gr.detection_victoire(gr.getGrille(),coloj,j1)==true){
+            if(gr.detection_victoire(gr.getGrille(),coloj,jcour)==true){
                 arret_jeu=true;
             }
             
-            System.out.println(j2.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
+            //échanger joueur
+            
+            
+            /*System.out.println(j2.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
             coloj=scanner.nextInt();
             
             while(coloj>tc){
@@ -211,7 +218,7 @@ public class Jeu
             
             if(gr.detection_victoire(gr.getGrille(),coloj,j2)==true){
                 arret_jeu=true;
-            }
+            }*/
             //deuxieme cas
         }
     
@@ -222,4 +229,5 @@ public class Jeu
     //demander si on veut lancer une sauvegarde ou pas
     
 }
+
 
