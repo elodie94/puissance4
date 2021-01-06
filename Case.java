@@ -6,7 +6,7 @@
  */
 public enum Case
 {
-    VIDE("_"), X("X"), O("O");
+    VIDE(' '), X('X'), O('O');
     
     //représentation de la case
     private char rep;
