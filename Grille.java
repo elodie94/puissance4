@@ -44,10 +44,11 @@ public class Grille
             }
         return true;
        }
-   }
+    }
    
    
-       /**
+       
+   /**
      * Cette methode nous permet de savoir si la grille est remplie ou pas 
      *
      * @param  [][]grille   la grille dont on veut savoir si elle est pleine ou non
@@ -101,9 +102,9 @@ public class Grille
         if (ajout_pion (j,grille,colonne) >-1){
             int ligne = ajout_pion (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
             
-            if (detection_victoire_horizontale ( grille, colonne, ligne) == true) return "Le joueur"+j+"est le vainqueur";
-            if (detection_victoire_verticale( grille, colonne, ligne) == true) return "Le joueur"+j+"est le vainqueur";
-            
+            if (detection_victoire_horizontale ( grille, colonne, ligne) == true) return "Le joueur "+j+" est le vainqueur";
+            if (detection_victoire_verticale( grille, colonne, ligne) == true) return "Le joueur "+j+" est le vainqueur";
+            if (detection_victoire_diago (grille, colonne, ligne) == true) return "Le joueur "+j+" est le vainqueur";
             //Ici il manque la detection de victoire diagonale
             
             if (grille_pleine (grille) == true) return "La partie se termine en match nul";
@@ -140,7 +141,7 @@ public class Grille
         else return false;
     }
     
-                 /**
+                /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à la verticale
      *
      * @param  [][]grille   la grille dans laquelle les joueurs jouent
@@ -167,7 +168,37 @@ public class Grille
         else return false;
     }
     
-
+                     /**
+     * Cette methode nous permet de détecter s'il y'a eu une victoire à la verticale
+     *
+     * @param  [][]grille   la grille dans laquelle les joueurs jouent
+     * @param  colonne      la colonne dans laquelle le jeton a été ajouté  
+     * @param  ligne        la ligne dans laquelle le jeton a été ajouté 
+     * @return              true si il y'a victoire, false sinon
+     */
+    
+    public boolean detection_victoire_diago (Case[][]grille, int colonne, int ligne){
+        int repetition = 1;
+        for (int i = ligne;  0<i && i < grille[colonne].length; i--){ //Vers la droite // compteur ligne
+            for (int j = colonne; 0<j && j <grille.length; j++){ // compteur colonne
+            if (grille [j][i] == grille [j+1][i-1] ){
+                repetition ++;
+            }
+          }
+        }
+          
+         for (int i = ligne;  0<i && i < grille[colonne].length; i++){ //Vers la gauche // compteur ligne
+            for (int j = colonne; 0<j &&j <grille.length; j--){ // compteur colonne
+            if (grille [j][i] == grille [j-1][i+1] ){
+                repetition ++;
+            }
+          }
+        }
+          
+        if (repetition >= 4) return true;
+        else return false;
+    }
+    
     /**
      * afficher la grille
      * 
