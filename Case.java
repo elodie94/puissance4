@@ -9,9 +9,9 @@ public enum Case
     VIDE("_"), X("X"), O("O");
     
     //représentation de la case
-    private String rep;
+    private char rep;
     
-    private Case(String rep)
+    private Case(char rep)
     {
         this.rep=rep;
     }
@@ -21,7 +21,7 @@ public enum Case
      * 
      * @return rep représentation de la case
      */
-    public String getRep()
+    public char getRep()
     {
         return this.rep;
     }
