@@ -2,8 +2,8 @@ import java.util.Scanner;
 /**
  * Classe représentant un joueur (humain ou IA)
  *
- * @author FEQQOUSSI Sarah JOLO Elodie
- * @version 29/12/2020
+ * @author (votre nom)
+ * @version (un numéro de version ou une date)
  */
 public class Joueur
 {
@@ -28,9 +28,11 @@ public class Joueur
         this.jeton=jeton;
     }
     
-    public Joueur()
+    public Joueur(Joueur j)
     {
-        this(true,null,Case.VIDE);
+        this.type=j.type;
+        this.nom=j.nom;
+        this.jeton=j.jeton;
     }
     
     public boolean getType()
@@ -50,3 +52,4 @@ public class Joueur
     
     
 }
+
