@@ -4,12 +4,6 @@
  * @author JOLO Elodie, FEQQOUSSI Sarah
  * @version (un numéro de version ou une date)
  */
-/**
- * Classe représentant la grille du puissance 4
- *
- * @author JOLO Elodie, FEQQOUSSI Sarah
- * @version (un numéro de version ou une date)
- */
 public class Grille
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
@@ -43,7 +37,7 @@ public class Grille
      * @return              true si la colonne est rempli, false sinon
      */
     public boolean verifier_colonne (Case[][] grille, int numcol){
-        if (numcol-1 > this.colonne) return true;
+        if (numcol > this.colonne) return true;
          
         for (int i = 0; i<this.ligne; i++){
             if (grille[numcol-1][i] == Case.VIDE)return false; 
@@ -130,17 +124,24 @@ public class Grille
         if (dernier_pion_joue (j,grille,colonne) >-1){
             int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
             
-            if (detection_victoire_horizontale ( grille, colonne, ligne) == true){ 
+            if (detection_victoire_horizontale ( grille, colonne, ligne) == true 
+            || detection_victoire_verticale( grille, colonne, ligne) == true
+            ||detection_victoire_diago (grille, colonne, ligne)==true)
+            { 
                 System.out.println ("Le joueur "+j.getNom()+" est le vainqueur");
                 return true;
             }   
             
-            if (detection_victoire_verticale( grille, colonne, ligne) == true){
+            /*if (detection_victoire_verticale( grille, colonne, ligne) == true){
                 System.out.println("Le joueur "+j.getNom()+" est le vainqueur");
                 return true;
-            }
+            }*/
             
             //Ici il manque la detection de victoire diagonale
+            /*if(detection_victoire_diago (grille, colonne, ligne)==true){
+                System.out.println("Le joueur "+j.getNom()+" est le vainqueur");
+                return true;
+            }*/
             
             if (grille_pleine (grille) == true) {
                 System.out.println("La partie se termine en match nul");
@@ -148,7 +149,8 @@ public class Grille
             }
         }
         System.out.println("Vous pouvez continuer la partie");
-        return false;  
+        return false;
+          
     }
     
     
@@ -217,15 +219,15 @@ public class Grille
     
     public boolean detection_victoire_diago (Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = ligne;  0<i && i < grille[colonne-1].length; i--){ //Vers la droite // compteur ligne
-            for (int j = colonne-1; 0<j && j <grille.length; j++){ // compteur colonne
+        for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la droite // compteur ligne
+            for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
                 if (grille [j][i].equals(grille [j+1][i-1]) && grille[j][i]!=Case.VIDE){
                     repetition ++;
                 }
             }
         }
           
-         for (int i = ligne;  0<i && i < grille[colonne-1].length; i++){ //Vers la gauche // compteur ligne
+         for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i++){ //Vers la gauche // compteur ligne
             for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
             if (grille [j][i].equals(grille [j-1][i+1]) && grille[j][i]!=Case.VIDE){
                 repetition ++;
