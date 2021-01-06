@@ -30,7 +30,7 @@ public class Grille
     }
     
     /**
-     * Cette methode nous permet de savoir si une colonne est rempli ou non
+     * Cette methode nous permet de savoir si une colonne est remplie ou non
      *
      * @param  [][]grille   le paramètre, le tableau de case
      * @param  numcol      le numéro de colonne dont on souhaite savoir si elle est rempli ou pas 
@@ -75,7 +75,7 @@ public class Grille
     
     public boolean ajout_pion (Joueur j, Case [][] grille, int colonne){
         if (verifier_colonne(grille , colonne) == true) { // Dans le cas ou la colonne est remplie
-            System.out.println("Cette colonne est déja rempli");
+            System.out.println("Cette colonne est déja remplie");
             return false;
         } //Dans le cas ou il reste une place de libre dans la colonne
         
@@ -99,7 +99,7 @@ public class Grille
      */
     public int dernier_pion_joue (Joueur j, Case [][] grille, int colonne){
         if (verifier_colonne(grille , colonne) == true) { // Dans le cas ou la colonne est remplie
-            System.out.println("Cette colonne est déja rempli");
+            System.out.println("Cette colonne est déja remplie");
             return -1;
         } //Dans le cas ou il reste une place de libre dans la colonne
         
@@ -125,13 +125,17 @@ public class Grille
             int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
             
             if (detection_victoire_horizontale ( grille, colonne, ligne) == true 
-            || detection_victoire_verticale( grille, colonne, ligne) == true
-            ||detection_victoire_diago (grille, colonne, ligne)==true)
+            || detection_victoire_verticale( grille, colonne, ligne) == true)
+            
             { 
                 System.out.println ("Le joueur "+j.getNom()+" est le vainqueur");
                 return true;
             }   
             
+            if (detection_victoire_diago (grille, colonne, ligne)==true) {
+                System.out.println ("TA REUSSI");
+                return true;
+            }
             /*if (detection_victoire_verticale( grille, colonne, ligne) == true){
                 System.out.println("Le joueur "+j.getNom()+" est le vainqueur");
                 return true;
@@ -151,7 +155,7 @@ public class Grille
         System.out.println("Vous pouvez continuer la partie");
         return false;
           
-    }
+      }
     
     
      /**
@@ -206,7 +210,7 @@ public class Grille
           
         if (repetition >= 4) return true;
         else return false;
-    }
+     }
     
      /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à la diagonale
@@ -219,19 +223,35 @@ public class Grille
     
     public boolean detection_victoire_diago (Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la droite // compteur ligne
+        for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la droite en bas // compteur ligne
             for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
                 if (grille [j][i].equals(grille [j+1][i-1]) && grille[j][i]!=Case.VIDE){
                     repetition ++;
                 }
             }
         }
-          
-         for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i++){ //Vers la gauche // compteur ligne
-            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
-            if (grille [j][i].equals(grille [j-1][i+1]) && grille[j][i]!=Case.VIDE){
-                repetition ++;
+        
+        for (int i = ligne;  0<i && i < this.ligne-1; i++){ //Vers la droite en haut // compteur ligne
+            for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
+                if (grille [j][i].equals(grille [j+1][i+1]) && grille[j][i]!=Case.VIDE){
+                    repetition ++;
+                }
             }
+        }
+          
+        for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i++){ //Vers la gauche en haut // compteur ligne
+            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
+               if (grille [j][i].equals(grille [j-1][i+1]) && grille[j][i]!=Case.VIDE){
+                repetition ++;
+               }
+          }
+        }
+        
+        for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i--){ //Vers la gauche en bas // compteur ligne
+            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
+               if (grille [j][i].equals(grille [j-1][i-1]) && grille[j][i]!=Case.VIDE){
+                repetition ++;
+               }
           }
         }
           
