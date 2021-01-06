@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
-
 /**
  * Classe qui va permettre de choisir le type de jeu voulu par l'utilisateur
  *
@@ -57,40 +56,36 @@ public class Jeu
     public static void sauvegarde(String ns)
     {
         Case[][] grille;
-        ArrayList<String> arraylist= new ArrayList<String>();
-        try {
-            FileInputStream fileIn = new FileInputStream(ns);
-            ObjectInputStream ois = new ObjectInputStream(fileIn);
-            arraylist = (ArrayList) ois.readObject();
-            ois.close();
-            fileIn.close();
+        ArrayList<Character> arraylist= new ArrayList<Character>();
+        /*try {
+            
             
             //parcourir la liste pour en faire une grille
-        } catch (FileNotFoundException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        }*/
         
         //afficher la liste et reprendre la partie
     }
     
-    public static int taille_colonne(){
+    /**
+     * fonction pour demander la taille de la colonne
+     * 
+     * @return 
+     */
+    public static int taille_ligne(){
         Scanner s=new Scanner(System.in);
-        System.out.println("Entrez le nombre de colonne de la grille (>=4) :");
+        System.out.println("Entrez la hauteur de la grille (>=4) :");
         int ligne=s.nextInt();
         
         while(ligne<4){ 
-             System.out.println("Entrez le nombre de ligne de la grille (>=4) :");
+             System.out.println("Entrez la hauteur de la grille (>=4) :");
              return ligne=s.nextInt();
         }
        return ligne;
     }
     
-    public static int taille_ligne(){
+    public static int taille_colonne(){
         Scanner s=new Scanner(System.in);
         System.out.println("Entrez la largeur de la grille(>=4) :");
         int colonne=s.nextInt();
@@ -101,14 +96,20 @@ public class Jeu
         return colonne;
     }
     
+    public static void saut_ligne(){
+        System.out.println("");
+    }
+    
     public static void main(String[] Args)
     {
         //saisir le nom du premier joueur
+        
         Scanner scanner=new Scanner(System.in);
         System.out.println("Saisir le nom du premier joueur:");
         String nomj1=scanner.nextLine();
+        saut_ligne();
         
-        //choisir le jeton du premier joueur
+        /*//choisir le jeton du premier joueur
         System.out.println("Joueur "+nomj1+", choisissez un jeton parmi X et O :");
         String jeton1=scanner.nextLine();
         
@@ -129,31 +130,91 @@ public class Jeu
                 //choisir la taille de la grille ou une sauvegarde
                 int c=taille_colonne();
                 int l=taille_ligne();
-                Grille g=new Grille(c,l);
-                g.afficher_grille();
-                sauvegarder("s",g,g.getGrille());
+                Grille gr=new Grille(c,l);
+                gr.afficher_grille();
+                //test sauvegarde
+                sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
                 //deuxieme cas
-            }else if(jeton1.equals("O")==true){
+            }else if(jeton1.equals("0")==true){
                 System.out.println("Saisissez le nom du deuxième joueur :");
                 String nomj2=scanner.nextLine();
                 Joueur j1=new Joueur(true,nomj1,Case.O);
                 Joueur j2=new Joueur(true,nomj2,Case.X);
                 PartieH_H partie=new PartieH_H(j1,j2);
                 jeulance=true;
-                
-                int c=taille_colonne();
-                int l=taille_ligne();
-                Grille g=new Grille(c,l);
-                g.afficher_grille();
-                sauvegarder("s",g,g.getGrille());
-                //3eme cas: si le format du jeton est pas bon on redemande et la bpucle recommence
+                //3eme cas: si le format du jeton est pas bon on redemande et la boucle recommence
             }else{
-                System.out.println("Le format entré n'est pas bon, choisissez un jeton parmi X et O");
+                System.out.println("Rentrez le bon format de jeton");
                 jeton1=scanner.nextLine();
                 jeulance=false;
             }
             //mettre un cas pour quitter quand on veut ??
+        }*/
+        
+        System.out.println("Saisissez le nom du deuxième joueur :");
+        String nomj2=scanner.nextLine();
+        saut_ligne();
+        Joueur j1=new Joueur(true,nomj1,Case.X);
+        Joueur j2=new Joueur(true,nomj2,Case.O);
+        PartieH_H partie=new PartieH_H(j1,j2);
+        
+        //choisir la taille de la grille ou une sauvegarde
+        int tc=taille_colonne();
+        int tl=taille_ligne();
+        Grille gr=new Grille(tc,tl);
+        gr.afficher_grille();
+        
+        boolean arret_jeu=false;
+        
+        Joueur jcour=new Joueur(j1);
+        while(arret_jeu==false){
+            //échanger joueur
+            
+            
+            /*if(scanner.nextLine().equals("S")){
+                sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
+                arret_jeu=true;
+            }*/
+            
+            System.out.println(j1.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
+            int coloj=scanner.nextInt();
+            while(coloj>tc){
+                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
+                coloj=scanner.nextInt();
+            }
+        
+            while(gr.ajout_pion(j1, gr.getGrille(),coloj) == false){
+                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
+                coloj=scanner.nextInt();
+            }
+        
+            gr.afficher_grille();
+            
+            if(gr.detection_victoire(gr.getGrille(),coloj,j1)==true){
+                arret_jeu=true;
+            }
+            
+            System.out.println(j2.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
+            coloj=scanner.nextInt();
+            
+            while(coloj>tc){
+                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
+                coloj=scanner.nextInt();
+            }
+        
+            while(gr.ajout_pion(j2, gr.getGrille(),coloj) == false){
+                System.out.println("Veuillez saisir un numéro de colonne autre que : "+coloj);
+                coloj=scanner.nextInt();
+            }
+        
+            gr.afficher_grille();
+            
+            if(gr.detection_victoire(gr.getGrille(),coloj,j2)==true){
+                arret_jeu=true;
+            }
+            //deuxieme cas
         }
+    
     }
 
     
@@ -161,3 +222,4 @@ public class Jeu
     //demander si on veut lancer une sauvegarde ou pas
     
 }
+
