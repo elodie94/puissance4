@@ -148,38 +148,44 @@ public class Jeu
         System.out.println("");
     }
     
-    public static void main(String[] Args)
+          public static void main(String[] Args)
     {
+        
+       Scanner scanner=new Scanner(System.in);
+        
+       System.out.println("Voulez-vous jouer au puissance 4? ((Oui) pour oui ou (Non) pour non) ");
+       String jouer=scanner.nextLine();
+       
+       if (jouer.equals("Oui") || jouer.equals("OUI") || jouer.equals("oui")){
         //saisir le nom du premier joueur
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Voulez-vous jouer au puissance 4? ((O) pour oui ou (N) pour non) ");
+         System.out.println("Saisir le nom du premier joueur:");
+         String nomj1=scanner.nextLine();
+         saut_ligne();
         
-        System.out.println("Saisir le nom du premier joueur:");
-        String nomj1=scanner.nextLine();
-        saut_ligne();
-        
-        System.out.println("Saisissez le nom du deuxième joueur :");
-        String nomj2=scanner.nextLine();
-        saut_ligne();
-        Joueur j1=new Joueur(true,nomj1,Case.X);
-        Joueur j2=new Joueur(true,nomj2,Case.O);
-        PartieH_H partie=new PartieH_H(j1,j2);
+         System.out.println("Saisissez le nom du deuxième joueur :");
+         String nomj2=scanner.nextLine();
+         saut_ligne();
+         Joueur j1=new Joueur(true,nomj1,Case.X);
+         Joueur j2=new Joueur(true,nomj2,Case.O);
+         PartieH_H partie=new PartieH_H(j1,j2);
         
         //choisir la taille de la grille ou une sauvegarde
-        char[][] g;
-        g=partie_sauvegarde("D:\\sauvegarde.txt");
+         char[][] g;
+       
+        /*g=partie_sauvegarde("D:\\sauvegarde.txt");
         Grille gr=new Grille(g);
-        gr.afficher_grille();
-        /*int tc=taille_colonne();
-        int tl=taille_ligne();
-        Grille gr=new Grille(tc,tl);
-        gr.afficher_grille();
-        */
+        gr.afficher_grille();*/
         
-        boolean arret_jeu=false;
+         int tc=taille_colonne();
+         int tl=taille_ligne();
+         Grille gr=new Grille(tc,tl);
+         gr.afficher_grille();
         
-        Joueur jcour=new Joueur(j1);
-        while(arret_jeu==false){
+        
+         boolean arret_jeu=false;
+        
+         Joueur jcour=new Joueur(j1);
+         while(arret_jeu==false){
             if(jcour.equals(j1)){
                 jcour=j2;
             }else{
@@ -191,10 +197,10 @@ public class Jeu
             int coloj=scanner.nextInt();
             saut_ligne();
             
-             if(coloj==0){
-                sauvegarder("D:\\sauvegarde.txt",gr.getGrille());
-                System.exit(0);
-            }
+             // if(coloj==0){
+                // sauvegarder("D:\\sauvegarde.txt",gr.getGrille());
+                // System.exit(0);
+             // }
             
             while(coloj<1 && coloj>gr.getColonne()){
                 System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+gr.getColonne());
@@ -216,6 +222,10 @@ public class Jeu
             
             //deuxieme cas
         }
+      }
+      else {
+          System.out.println("Très bien, à la prochaine !");
+        }
     
     }
 
@@ -224,6 +234,3 @@ public class Jeu
     //demander si on veut lancer une sauvegarde ou pas
     
 }
-
-
-
