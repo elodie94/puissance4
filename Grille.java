@@ -124,8 +124,8 @@ public class Grille
         if (dernier_pion_joue (j,grille,colonne) >-1){
             int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
             
-            if (detection_victoire_horizontale ( grille, colonne, ligne) == true 
-            || detection_victoire_verticale( grille, colonne, ligne) == true)
+            if (detection_victoire_horizontale (j, grille, colonne, ligne) == true 
+            || detection_victoire_verticale( j, grille, colonne, ligne) == true)
             
             { 
                 System.out.println ("Le joueur "+j.getNom()+" est le vainqueur");
@@ -157,16 +157,16 @@ public class Grille
      * @return              true si il y'a victoire, false sinon
      */
     
-    public boolean detection_victoire_horizontale (char[][]grille, int colonne, int ligne){
+    public boolean detection_victoire_horizontale (Joueur j, Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = colonne-1;  0<=i && i < this.colonne-1; i++){ //Vers la droite
-            if (grille[i][ligne]!=Case.VIDE.getRep() && grille [i][ligne]==(grille [i+1][ligne]) ){
+        for (int i = colonne-1;  0<=i && grille[i][ligne]== j.getJeton() && i < this.colonne-1; i++){ //Vers la droite
+            if (grille [i][ligne].equals(grille [i+1][ligne]) ){
                 repetition ++;
             }
         }
           
-        for (int j = colonne-1;  1<=j && j < this.colonne; j--){ //Vers la gauche
-            if (grille [j][ligne]==(grille [j-1][ligne]) && grille[j][ligne]!=Case.VIDE.getRep()){
+        for (int b = colonne-1;  1<=b && b < this.colonne && grille[b][ligne]== j.getJeton(); b--){ //Vers la gauche
+            if (grille [b][ligne].equals(grille [b-1][ligne]) ){
                 repetition ++;
             }
         }
@@ -184,23 +184,23 @@ public class Grille
      * @return              true si il y'a victoire, false sinon
      */
     
-    public boolean detection_victoire_verticale (char[][]grille, int colonne, int ligne){
+    public boolean detection_victoire_verticale (Joueur j,Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = ligne;  0<=i && i < this.ligne-1; i++){ //Vers la droite
-            if (grille [colonne-1][i]==(grille [colonne-1][i+1] ) && grille[colonne-1][i]!=Case.VIDE.getRep()){
+        for (int i = ligne;  0<=i && i < this.ligne-1 && grille[colonne-1][i]==j.getJeton(); i++){ //Vers la droite
+            if (grille [colonne-1][i].equals(grille [colonne-1][i+1] ) ){
                 repetition ++;
             }
           }
           
-        for (int j = ligne;  1<=j && j < this.ligne; j--){ //Vers la gauche
-            if (grille [colonne-1][j]==(grille [colonne-1][j-1]) && grille[colonne-1][j]!=Case.VIDE.getRep()){
+        for (int b = ligne;  1<=b && b < this.ligne && grille[colonne-1][b] == j.getJeton(); b--){ //Vers la gauche
+            if (grille [colonne-1][b].equals(grille [colonne-1][b-1])) {
                 repetition ++;
             }
           }
           
         if (repetition >= 4) return true;
         else return false;
-    }
+     }
     
      /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à la diagonale
