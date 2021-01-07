@@ -13,7 +13,7 @@ public class Jeu
      * fonction pour sauvegarder une partie
      * 
      */
-    public static void sauvegarder(String nom_sauv,Grille g,Case [][] grille)
+    public static void sauvegarder(String nom_sauv,Grille g,char [][] grille)
     {
         try {
             ArrayList<Character> data=new ArrayList<Character>();
@@ -24,11 +24,12 @@ public class Jeu
             data.add(' ');
             char li=(char) (g.getLigne()+'0');
             data.add(li);
+            data.add(' ');
             for(int l=0;l<g.getLigne();l++){
                 for(int c=0;c<g.getColonne();c++){
-                    if(grille[c][l]!=Case.VIDE) data.add(grille[c][l].getRep());
+                   data.add(grille[c][l]);
                 }
-                data.add(' ');
+                data.add('.');
             }
             data.add(' ');
             data.add('*');
@@ -55,7 +56,7 @@ public class Jeu
      */
     public static void sauvegarde(String ns)
     {
-        Case[][] grille;
+        char[][] grille;
         ArrayList<Character> arraylist= new ArrayList<Character>();
         /*try {
             
@@ -173,14 +174,16 @@ public class Jeu
             }else{
                 jcour=j1;
             }
-            /*if(scanner.nextLine().equals("S")){
-                sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
-                arret_jeu=true;
-            }*/
             
             System.out.println(jcour.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
+            
             int coloj=scanner.nextInt();
             saut_ligne();
+            
+             if(coloj==0){
+                sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
+                System.exit(0);
+            }
             
             while(coloj>tc){
                 System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
@@ -193,32 +196,13 @@ public class Jeu
             }
         
             gr.afficher_grille();
+            saut_ligne();
             
             if(gr.detection_victoire(gr.getGrille(),coloj,jcour)==true){
                 arret_jeu=true;
             }
             
-            //échanger joueur
             
-            
-            /*System.out.println(j2.getNom()+", saisissez le numéro de la colonne où vous voulez jouer : ");
-            coloj=scanner.nextInt();
-            
-            while(coloj>tc){
-                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
-                coloj=scanner.nextInt();
-            }
-        
-            while(gr.ajout_pion(j2, gr.getGrille(),coloj) == false){
-                System.out.println("Veuillez saisir un numéro de colonne autre que : "+coloj);
-                coloj=scanner.nextInt();
-            }
-        
-            gr.afficher_grille();
-            
-            if(gr.detection_victoire(gr.getGrille(),coloj,j2)==true){
-                arret_jeu=true;
-            }*/
             //deuxieme cas
         }
     
@@ -229,5 +213,6 @@ public class Jeu
     //demander si on veut lancer une sauvegarde ou pas
     
 }
+
 
 
