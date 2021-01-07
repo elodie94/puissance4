@@ -125,14 +125,17 @@ public class Grille
             int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
             
             if (detection_victoire_horizontale ( grille, colonne, ligne) == true 
-            || detection_victoire_verticale( grille, colonne, ligne) == true
-            ||detection_victoire_diago (grille, colonne, ligne)==true)
+            || detection_victoire_verticale( grille, colonne, ligne) == true)
+            
             { 
                 System.out.println ("Le joueur "+j.getNom()+" est le vainqueur");
                 return true;
             }   
             
-            
+            if (detection_victoire_diago (grille, colonne, ligne)==true){
+                System.out.println ("VICTOIRE DIAGONALE PAR "+j.getNom()+);
+                return true;
+            }
             
             if (grille_pleine (grille) == true) {
                 System.out.println("La partie se termine en match nul");
@@ -208,25 +211,42 @@ public class Grille
      * @return              true si il y'a victoire, false sinon
      */
     
-    public boolean detection_victoire_diago (char[][] grille, int colonne, int ligne){
+      public boolean detection_victoire_diago (Case[][]grille, int colonne, int ligne){
         int repetition = 1;
-        for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la droite // compteur ligne
+        int rep = 1;
+        for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la droite en bas // compteur ligne
             for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
-                if (grille [j][i]==(grille [j+1][i-1]) && grille[j][i]!=Case.VIDE.getRep()){
+                if (grille [j][i].equals(grille [j+1][i-1]) && grille[j][i]!=Case.VIDE){
                     repetition ++;
                 }
             }
         }
-          
-         for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la gauche // compteur ligne
-            for (int j = colonne-1; 0<j &&j <this.colonne; j--){ // compteur colonne
-                if (grille [j][i]==(grille [j-1][i-1]) && grille[j][i]!=Case.VIDE.getRep()){
-                    repetition ++;
+        
+        for (int i = ligne;  0<i && i < this.ligne-1; i++){ //Vers la droite en haut // compteur ligne
+            for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
+                if (grille [j][i].equals(grille [j+1][i+1]) && grille[j][i]!=Case.VIDE){
+                    rep ++;
                 }
             }
         }
           
-        if (repetition >= 4) return true;
+        for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i++){ //Vers la gauche en haut // compteur ligne
+            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
+               if (grille [j][i].equals(grille [j-1][i+1]) && grille[j][i]!=Case.VIDE){
+                repetition ++;
+               }
+          }
+        }
+        
+        for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i--){ //Vers la gauche en bas // compteur ligne
+            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
+               if (grille [j][i].equals(grille [j-1][i-1]) && grille[j][i]!=Case.VIDE){
+                rep ++;
+               }
+          }
+        }
+          
+        if (repetition >= 4 || rep >= 4 ) return true;
         return false;
     }
 
