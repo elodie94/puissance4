@@ -151,53 +151,12 @@ public class Jeu
     public static void main(String[] Args)
     {
         //saisir le nom du premier joueur
-        
         Scanner scanner=new Scanner(System.in);
+        System.out.println("Voulez-vous jouer au puissance 4? ((O) pour oui ou (N) pour non) ");
+        
         System.out.println("Saisir le nom du premier joueur:");
         String nomj1=scanner.nextLine();
         saut_ligne();
-        
-        /*//choisir le jeton du premier joueur
-        System.out.println("Joueur "+nomj1+", choisissez un jeton parmi X et O :");
-        String jeton1=scanner.nextLine();
-        
-        
-        
-        //test tant que le jeu n'est pas lancé
-        boolean jeulance=false;
-        
-        while(jeulance==false){
-            //1er cas: si le jeton choisi est X on peut demander le nom du deuxième joueur et attribuer le jeton
-            if(jeton1.equals("X")==true){
-                System.out.println("Saisissez le nom du deuxième joueur :");
-                String nomj2=scanner.nextLine();
-                Joueur j1=new Joueur(true,nomj1,Case.X);
-                Joueur j2=new Joueur(true,nomj2,Case.O);
-                PartieH_H partie=new PartieH_H(j1,j2);
-                jeulance=true;
-                //choisir la taille de la grille ou une sauvegarde
-                int c=taille_colonne();
-                int l=taille_ligne();
-                Grille gr=new Grille(c,l);
-                gr.afficher_grille();
-                //test sauvegarde
-                sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
-                //deuxieme cas
-            }else if(jeton1.equals("0")==true){
-                System.out.println("Saisissez le nom du deuxième joueur :");
-                String nomj2=scanner.nextLine();
-                Joueur j1=new Joueur(true,nomj1,Case.O);
-                Joueur j2=new Joueur(true,nomj2,Case.X);
-                PartieH_H partie=new PartieH_H(j1,j2);
-                jeulance=true;
-                //3eme cas: si le format du jeton est pas bon on redemande et la boucle recommence
-            }else{
-                System.out.println("Rentrez le bon format de jeton");
-                jeton1=scanner.nextLine();
-                jeulance=false;
-            }
-            //mettre un cas pour quitter quand on veut ??
-        }*/
         
         System.out.println("Saisissez le nom du deuxième joueur :");
         String nomj2=scanner.nextLine();
@@ -207,10 +166,15 @@ public class Jeu
         PartieH_H partie=new PartieH_H(j1,j2);
         
         //choisir la taille de la grille ou une sauvegarde
-        int tc=taille_colonne();
+        char[][] g;
+        g=partie_sauvegarde("D:\\sauvegarde.txt");
+        Grille gr=new Grille(g);
+        gr.afficher_grille();
+        /*int tc=taille_colonne();
         int tl=taille_ligne();
         Grille gr=new Grille(tc,tl);
         gr.afficher_grille();
+        */
         
         boolean arret_jeu=false;
         
@@ -228,17 +192,17 @@ public class Jeu
             saut_ligne();
             
              if(coloj==0){
-                sauvegarder("D:\\sauvegarde.txt", gr, gr.getGrille());
+                sauvegarder("D:\\sauvegarde.txt",gr.getGrille());
                 System.exit(0);
             }
             
-            while(coloj>tc){
-                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc);
+            while(coloj<1 && coloj>gr.getColonne()){
+                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+gr.getColonne());
                 coloj=scanner.nextInt();
             }
         
             while(gr.ajout_pion(jcour, gr.getGrille(),coloj) == false){
-                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+tc+" sauf "+coloj);
+                System.out.println("Veuillez saisir un numéro de colonne compris entre 1 et "+gr.getColonne()+" sauf "+coloj);
                 coloj=scanner.nextInt();
             }
         
