@@ -138,7 +138,7 @@ public class Grille
                 return true;
             }   
             
-            if (detection_victoire_diago (grille, colonne, ligne)==true){
+            if (detection_victoire_diago (j, grille, colonne, ligne)==true){
                 System.out.println ("VICTOIRE DIAGONALE PAR "+j.getNom());
                 return true;
             }
@@ -208,7 +208,8 @@ public class Grille
         else return false;
      }
     
-     /**
+  
+       /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à la diagonale
      *
      * @param  [][]grille   la grille dans laquelle les joueurs jouent
@@ -217,36 +218,36 @@ public class Grille
      * @return              true si il y'a victoire, false sinon
      */
     
-      public boolean detection_victoire_diago (char[][]grille, int colonne, int ligne){
+      public boolean detection_victoire_diago (Joueur b,char[][]grille, int colonne, int ligne){
         int repetition = 1;
         int rep = 1;
-        for (int i = ligne;  0<i && i < this.ligne; i--){ //Vers la droite en bas // compteur ligne
-            for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
-                if (grille [j][i]==(grille [j+1][i-1]) && grille[j][i]!=Case.VIDE.getRep()){
+        for (int i = ligne;  0<i && i < this.ligne ; i--){ //Vers la droite en bas // compteur ligne
+            for (int j = colonne-1; 0<j && j<this.colonne-1 && grille[j][i]== b.getJeton().getRep() ; j++){ // compteur colonne
+                if (grille [j][i]==(grille [j+1][i-1]) ){
                     repetition ++;
                 }
             }
         }
         
         for (int i = ligne;  0<i && i < this.ligne-1; i++){ //Vers la droite en haut // compteur ligne
-            for (int j = colonne-1; 0<j && j <this.colonne-1; j++){ // compteur colonne
-                if (grille [j][i]==(grille [j+1][i+1]) && grille[j][i]!=Case.VIDE.getRep()){
+            for (int j = colonne-1; 0<j && j <this.colonne-1&& grille[j][i]==b.getJeton().getRep(); j++){ // compteur colonne
+                if (grille [j][i]==(grille [j+1][i+1]) ){
                     rep ++;
                 }
             }
         }
           
         for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i++){ //Vers la gauche en haut // compteur ligne
-            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
-               if (grille [j][i]==(grille [j-1][i+1]) && grille[j][i]!=Case.VIDE.getRep()){
+            for (int j = colonne-1; 0<j &&j <grille.length && grille[j][i]== b.getJeton().getRep(); j--){ // compteur colonne
+               if (grille [j][i]==(grille [j-1][i+1]) ){
                 repetition ++;
                }
           }
         }
         
         for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i--){ //Vers la gauche en bas // compteur ligne
-            for (int j = colonne-1; 0<j &&j <grille.length; j--){ // compteur colonne
-               if (grille [j][i]==(grille [j-1][i-1]) && grille[j][i]!=Case.VIDE.getRep()){
+            for (int j = colonne-1; 0<j &&j <grille.length && grille[j][i]==b.getJeton().getRep(); j--){ // compteur colonne
+               if (grille [j][i]==(grille [j-1][i-1]) ){
                 rep ++;
                }
           }
