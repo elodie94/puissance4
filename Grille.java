@@ -28,6 +28,12 @@ public class Grille
             }
         }
     }
+
+    public Grille(char[][] grille){
+        this.colonne=grille.length;
+        this.ligne=grille[0].length;
+        this.grille=grille;
+    }
     
     /**
      * Cette methode nous permet de savoir si une colonne est rempli ou non
