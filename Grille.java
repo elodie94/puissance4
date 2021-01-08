@@ -118,40 +118,7 @@ public class Grille
         
     }
     
-     /**
-     * Cette methode nous permet de détecter s'il y'a eu une victoire
-     *
-     * @param  [][]grille   la grille dans laquelle les joueurs jouent
-     * @param  colonne      la colonne choisi par le joueur 
-     * @return              un String annoncant le vainqueur/ un match nul 
-     */
-    public boolean detection_victoire (char[][]grille, int colonne, Joueur j ){
-        // Detection de victoire à l'horizontale
-        if (dernier_pion_joue (j,grille,colonne) >-1){
-            int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
-            
-            if (detection_victoire_horizontale (j, grille, colonne, ligne) == true 
-            || detection_victoire_verticale( j, grille, colonne, ligne) == true)
-            
-            { 
-                System.out.println ("Le joueur "+j.getNom()+" est le vainqueur");
-                return true;
-            }   
-            
-            if (detection_victoire_diago (j, grille, colonne, ligne)==true){
-                System.out.println ("VICTOIRE DIAGONALE PAR "+j.getNom());
-                return true;
-            }
-            
-            if (grille_pleine (grille) == true) {
-                System.out.println("La partie se termine en match nul");
-                return true;
-            }
-        }
-        System.out.println("Vous pouvez continuer la partie");
-        return false;
-          
-    }
+    
     
     
      /**
@@ -255,6 +222,41 @@ public class Grille
           
         if (repetition >= 4 || rep >= 4 ) return true;
         return false;
+    }
+
+     /**
+     * Cette methode nous permet de détecter s'il y'a eu une victoire
+     *
+     * @param  [][]grille   la grille dans laquelle les joueurs jouent
+     * @param  colonne      la colonne choisi par le joueur 
+     * @return              un String annoncant le vainqueur/ un match nul 
+     */
+    public boolean detection_victoire (char[][]grille, int colonne, Joueur j ){
+        // Detection de victoire à l'horizontale
+        if (dernier_pion_joue (j,grille,colonne) >-1){
+            int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
+            
+            if (detection_victoire_horizontale (j, grille, colonne, ligne) == true 
+            || detection_victoire_verticale( j, grille, colonne, ligne) == true)
+            
+            { 
+                System.out.println ("Le joueur "+j.getNom()+" est le vainqueur");
+                return true;
+            }   
+            
+            if (detection_victoire_diago (j, grille, colonne, ligne)==true){
+                System.out.println ("VICTOIRE DIAGONALE PAR "+j.getNom());
+                return true;
+            }
+            
+            if (grille_pleine (grille) == true) {
+                System.out.println("La partie se termine en match nul");
+                return true;
+            }
+        }
+        System.out.println("Vous pouvez continuer la partie");
+        return false;
+          
     }
 
 
