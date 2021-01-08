@@ -306,4 +306,38 @@ public class Grille
     public char[][] getGrille(){
         return this.grille;
     }
+
+       /* VERSION 2, LIT BIEN LES PARAMETRE PCQ CA FT BUGGER TOUT LE PROGRAMME
+       public boolean detection_victoire_diago (Joueur b,char[][]grille, int colonne, int ligne){
+        int repetition = 1;
+        int rep = 1;
+        int i = ligne;
+        int j = colonne-1;
+        int i2 = ligne;
+        int j2 = colonne-1;
+        
+        
+        while (i2>=0 && j2 >= 1 && j>= 0 && i>= 0 && j<this.colonne-1 && i< this.ligne-1 && grille[j][i]== b.getJeton().getRep()
+               && j2<this.colonne && i2< this.ligne-1){ //courbe croissante du - vers le +
+            
+            if (grille [j][i] == grille[j+1][i+1] //coté droit en haut
+                ||grille[j2][i2] == grille[j2 -1][i2 +1] ){ //coté gauche en bas
+                rep ++;
+                System.out.println ("La valeur de rep est: "+rep);
+                if (rep >= 4) return true;
+            }
+        }
+        
+        while (j>=1 && i2 >= 1 && i>= 0&& j2>=0 && i<this.ligne-1 && j2<this.colonne-1 && i2 < this.ligne-1 && j<this.colonne){//courbe décroissante
+            
+            if (grille [j][i] == grille[j-1][i+1]// coté gauche en haut
+                || grille [j2][i2] == grille[j2 +1][i2-1]){// coté droit en bas
+                    repetition ++;
+                    System.out.println ("La valeur de repetition est: "+repetition);
+                    if (repetition >= 4) return true;
+                }
+            
+        }
+        return false;
+        */
 }
