@@ -1,4 +1,3 @@
-
 import java.io.*;
 /**
  * Classe représentant une partie humain contre humain
