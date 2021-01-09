@@ -34,7 +34,7 @@ public class Partie
                  Joueur j1=new Joueur(true,nomj1,Case.X);
                  Joueur j2=new Joueur(true,nomj2,Case.O);
                  
-                 CreerPartie partie=new CreerPartie(j1,j2);
+
                          //choisir la taille de la grille ou une sauvegarde
                  char[][] g;
                
@@ -98,7 +98,6 @@ public class Partie
                  Joueur j1=new Joueur(true,nomj1,Case.X);
                  Joueur j2=new Joueur(false,"bot",Case.O);
                   
-                 CreerPartie partie=new CreerPartie(j1,j2);
                  
                 //choisir la taille de la grille ou une sauvegarde
                  char[][] g;
