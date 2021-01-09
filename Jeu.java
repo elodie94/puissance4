@@ -103,38 +103,56 @@ public class Jeu
         return null;
     }
     
-    /**
-     * fonction pour demander la largeur de la grille
+      /**
+     * Fonction qui permet à l'utilisateur d'entrer le nombre de ligne de la grille souhaitées 
      * 
-     * @return la largeur des lignes de la grille 
+     * @return le nombre de ligne 
      */
     public static int taille_ligne(){
         Scanner s=new Scanner(System.in);
-        System.out.println("Entrez la hauteur de la grille (>=4) :");
-        int ligne=s.nextInt();
-        
-        while(ligne<4){ 
-             System.out.println("Entrez la hauteur de la grille (>=4) :");
+        System.out.println("Entrez le nombre de ligne de la grille souhaitées  (>=4) :");
+        int ligne;
+        try{
+         ligne = Integer.parseInt(s.next());
+         while(ligne<4){ 
+             System.out.println("Entrez le nombre de ligne de la grille souhaitées (>=4) :");
              return ligne=s.nextInt();
+         }
+        
         }
-       return ligne;
+        catch (NumberFormatException e){
+            System.out.println ("La valeur entrée n'est pas un entier, réessayez");
+            saut_ligne();
+            ligne = taille_ligne();
+        }
+        return ligne;
     }
     
     /**
-     * fonction pour demander la hauteur de la grille
+     * Fonction qui permet à l'utilisateur d'entrer le nombre de ligne de la grille souhaitées 
      * 
-     * @return la hauteur des colonnes de la grille
+     * @return le nombre de colonne 
      */
     public static int taille_colonne(){
         Scanner s=new Scanner(System.in);
-        System.out.println("Entrez la largeur de la grille(>=4) :");
-        int colonne=s.nextInt();
-        while(colonne<4){
-            System.out.println("Entrez la largeur de la grille(>=4) :");
+        System.out.println("Entrez le nombre de colonne de la grille souhaitées (>=4) :");
+        int colonne;
+      try{
+         colonne = Integer.parseInt(s.next());
+         while(colonne<4){
+            System.out.println("Entrez le nombre de colonne de la grille souhaitées (>=4) :");
             return colonne=s.nextInt();
         }
-        return colonne;
+         
+        }
+        catch (NumberFormatException e){
+            System.out.println ("La valeur entrée n'est pas un entier, reéssayez ");
+            saut_ligne();
+            colonne = taille_colonne();
+        }
+       return colonne;
     }
+
     
     /**
      * fonction pour faire un saut de ligne
