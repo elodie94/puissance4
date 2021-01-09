@@ -5,13 +5,13 @@ import java.lang.Exception;
 /**
  * Classe qui va permettre de choisir le type de jeu voulu par l'utilisateur
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author JOLO Elodie, FEQQOUSSI Sarah
+ * @version 09/01/2021
  */
 public class Jeu
 {
     /**
-     * fonction pour sauvegarder une partie
+     * Fonction pour sauvegarder une partie
      * 
      * @param nom_sauv nom du fichier
      * @param g la grille à sauveagrder
@@ -55,7 +55,7 @@ public class Jeu
     }
     
     /**
-     * fonction pour avoir la grille sauvegardée d'une partie
+     * Fonction pour avoir la grille sauvegardée d'une partie
      * 
      * @param ns nom de la sauvegarde
      * @return grille la grille
@@ -109,23 +109,23 @@ public class Jeu
     }
     
     /**
-     * fonction pour demander la hauteur de la grille
+     * Fonction qui permet à l'utilisateur d'entrer le nombre de ligne de la grille souhaitées 
      * 
      * @return le nombre de ligne 
      */
     public static int taille_ligne(){
        Scanner s=new Scanner(System.in);
-       System.out.println("Entrez la hauteur de la grille (>=4) :");
+       System.out.println("Entrez le nombre de ligne de la grille souhaitées  (>=4) :");
        int ligne;
         try{
          ligne = Integer.parseInt(s.next());
          while(ligne<4){ 
-             System.out.println("Entrez la hauteur de la grille (>=4) :");
+             System.out.println("Entrez le nombre de ligne de la grille souhaitées (>=4) :");
              return ligne=s.nextInt();
          }
         
-      }
-      catch (NumberFormatException e){
+        }
+        catch (NumberFormatException e){
             System.out.println ("La valeur entrée n'est pas un entier, réessayez");
             saut_ligne();
             ligne = taille_ligne();
@@ -134,18 +134,18 @@ public class Jeu
     }
     
     /**
-     * fonction pour demander la taille de la colonne
+     * Fonction qui permet à l'utilisateur d'entrer le nombre de ligne de la grille souhaitées 
      * 
      * @return le nombre de colonne 
      */
     public static int taille_colonne(){
         Scanner s=new Scanner(System.in);
-        System.out.println("Entrez la largeur de la grille(>=4) :");
+        System.out.println("Entrez le nombre de colonne de la grille souhaitées (>=4) :");
         int colonne;
       try{
          colonne = Integer.parseInt(s.next());
          while(colonne<4){
-            System.out.println("Entrez la largeur de la grille(>=4) :");
+            System.out.println("Entrez le nombre de colonne de la grille souhaitées (>=4) :");
             return colonne=s.nextInt();
         }
          
@@ -159,18 +159,10 @@ public class Jeu
     }
     
     /**
-     * fonction pour faire un saut de ligne
+     * Fonction pour faire un saut de ligne
      * 
      */
     public static void saut_ligne(){
         System.out.println("");
     }
-    
-
-
-    
-   
 }
-
-
-
