@@ -2,15 +2,14 @@ import java.util.Scanner;
 /**
  * Classe représentant un joueur (humain ou IA)
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author JOLO Elodie, FEQQOUSSI Sarah
+ * @version 09/01/2021
  */
 public class Joueur
 {
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
+    
     private boolean type;
     private String nom;
-    //private int nb_pion; //pour détecter une fin de partie
     private Case jeton;
 
     /**
