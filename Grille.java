@@ -9,7 +9,7 @@ public class Grille
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private final int colonne, ligne;
     private char[][] grille; //ou ArrayList<Colonne> grille;
-    private int nb_pions;
+   
 
     /**
      * Constructeur d'objets de classe Grille
@@ -53,7 +53,7 @@ public class Grille
    
    
    
-     /**
+    /**
      * Cette methode nous permet de savoir si la grille est remplie ou pas 
      *
      * @param  [][]grille   la grille dont on veut savoir si elle est pleine ou non
@@ -96,6 +96,30 @@ public class Grille
     }
     
     /**
+     * Cette methode permet a l'ordinateur d'ajouter un pion 
+     *
+     * @param  j            Joueur qui doit jouer 
+     * @param  [][]grille   la grille dans laquelle on souhaite jouer
+     * @param  colonne      le numéro de colonne dans laquelle le joueur souhaite placer son pion
+     * @return              true si le pion a été ajouté ,sinon false
+     */
+    
+    public int ajout_pion_IA(Joueur b, char [][] grille){
+        for (int i = 1; i<= this.colonne; i++){
+            
+            if (verifier_colonne(grille , i) == false){// Si la colonne n'est pas rempli on l'a parcours
+               for (int j =0; j < this.ligne ; j++){
+                 if (grille[i][j] == Case.VIDE.getRep()){ 
+                   grille[i][j] = b.getJeton().getRep();//On place le jeton à la première case libre 
+                   System.out.println (i);
+                   return i;
+                 }
+              } 
+            }
+        }
+        return -1;
+    }
+    /**
      * Cette methode permet d'avoir la ligne du dernier pion joué
      *
      * @param  j            Joueur qui a joué 
@@ -118,10 +142,10 @@ public class Grille
         
     }
     
+
     
     
-    
-     /**
+    /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à l'horizontale
      *
      * @param  [][]grille   la grille dans laquelle les joueurs jouent
@@ -169,14 +193,13 @@ public class Grille
             if (grille [colonne-1][b] == (grille [colonne-1][b-1])) {
                 repetition ++;
             }
-          }
+         }
           
         if (repetition >= 4) return true;
         else return false;
      }
     
-  
-       /**
+     /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire à la diagonale
      *
      * @param  [][]grille   la grille dans laquelle les joueurs jouent
@@ -185,45 +208,41 @@ public class Grille
      * @return              true si il y'a victoire, false sinon
      */
     
-      public boolean detection_victoire_diago (Joueur b,char[][]grille, int colonne, int ligne){
-        int repetition = 1;
-        int rep = 1;
-        for (int i = ligne;  0<i && i < this.ligne ; i--){ //Vers la droite en bas // compteur ligne
-            for (int j = colonne-1; 0<j && j<this.colonne-1 && grille[j][i]== b.getJeton().getRep() ; j++){ // compteur colonne
-                if (grille [j][i]==(grille [j+1][i-1]) ){
-                    repetition ++;
-                }
-            }
-        }
+      /*public boolean detection_victoire_diago (Joueur b,char[][]grille, int colonne, int ligne){
         
-        for (int i = ligne;  0<i && i < this.ligne-1; i++){ //Vers la droite en haut // compteur ligne
-            for (int j = colonne-1; 0<j && j <this.colonne-1&& grille[j][i]==b.getJeton().getRep(); j++){ // compteur colonne
-                if (grille [j][i]==(grille [j+1][i+1]) ){
-                    rep ++;
-                }
-            }
-        }
-          
-        for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i++){ //Vers la gauche en haut // compteur ligne
-            for (int j = colonne-1; 0<j &&j <grille.length && grille[j][i]== b.getJeton().getRep(); j--){ // compteur colonne
-               if (grille [j][i]==(grille [j-1][i+1]) ){
-                repetition ++;
-               }
-          }
-        }
-        
-        for (int i = ligne;  0<i && i < grille[colonne-1].length-1; i--){ //Vers la gauche en bas // compteur ligne
-            for (int j = colonne-1; 0<j &&j <grille.length && grille[j][i]==b.getJeton().getRep(); j--){ // compteur colonne
-               if (grille [j][i]==(grille [j-1][i-1]) ){
-                rep ++;
-               }
-          }
-        }
-          
-        if (repetition >= 4 || rep >= 4 ) return true;
-        return false;
-    }
+      /*    
+       * 
+       * 
+       joueur = grille[0][0].joueur;
 
+		if (joueur != null && grille[1][1].joueur == joueur // décroissante
+				&& grille[2][2].joueur == joueur) {
+
+			return joueur;
+
+		}
+      
+       
+       // if (repetition >= 4 || rep >= 4 ) return true;
+        return false;*/
+        
+      // public int droite_en_bas (Joueur b,char[][]grille, int colonne, int ligne){
+          // boolean s = true;
+          // int i = 1;
+          // int repetition = 0;
+          
+          // if( ligne - i >=0 && colonne + i < grille.length){
+              // while (this.ligne - i >= 0 && this.colonne + i < grille.length && s){
+                  // if (!grille[colonne +i].
+                // }
+          
+          
+          
+        // }
+    // }
+        
+     
+     
      /**
      * Cette methode nous permet de détecter s'il y'a eu une victoire
      *
@@ -233,8 +252,15 @@ public class Grille
      */
     public boolean detection_victoire (char[][]grille, int colonne, Joueur j ){
         // Detection de victoire à l'horizontale
+        
+        if (grille_pleine (grille) == true) {
+                System.out.println("La partie se termine en match nul");
+                return true;
+            }
         if (dernier_pion_joue (j,grille,colonne) >-1){
             int ligne = dernier_pion_joue (j,grille,colonne); // Recuperation du numéro de ligne ou se trouve le pion ajouté
+            
+            
             
             if (detection_victoire_horizontale (j, grille, colonne, ligne) == true 
             || detection_victoire_verticale( j, grille, colonne, ligne) == true)
@@ -244,24 +270,20 @@ public class Grille
                 return true;
             }   
             
-            if (detection_victoire_diago (j, grille, colonne, ligne)==true){
-                System.out.println ("VICTOIRE DIAGONALE PAR "+j.getNom());
-                return true;
-            }
+            // if (detection_victoire_diago (j, grille, colonne, ligne)==true){
+                // System.out.println ("VICTOIRE DIAGONALE PAR "+j.getNom());
+                // return true;
+            // }
             
-            if (grille_pleine (grille) == true) {
-                System.out.println("La partie se termine en match nul");
-                return true;
-            }
+            
         }
         System.out.println("Vous pouvez continuer la partie");
         return false;
           
     }
 
-
     /**
-     * afficher la grille
+     * Cette methode nous permet d'afficher une grille
      * 
      */
     public void afficher_grille()
@@ -308,38 +330,4 @@ public class Grille
     public char[][] getGrille(){
         return this.grille;
     }
-
-       /* VERSION 2, LIT BIEN LES PARAMETRE PCQ CA FT BUGGER TOUT LE PROGRAMME
-       public boolean detection_victoire_diago (Joueur b,char[][]grille, int colonne, int ligne){
-        int repetition = 1;
-        int rep = 1;
-        int i = ligne;
-        int j = colonne-1;
-        int i2 = ligne;
-        int j2 = colonne-1;
-        
-        
-        while (i2>=0 && j2 >= 1 && j>= 0 && i>= 0 && j<this.colonne-1 && i< this.ligne-1 && grille[j][i]== b.getJeton().getRep()
-               && j2<this.colonne && i2< this.ligne-1){ //courbe croissante du - vers le +
-            
-            if (grille [j][i] == grille[j+1][i+1] //coté droit en haut
-                ||grille[j2][i2] == grille[j2 -1][i2 +1] ){ //coté gauche en bas
-                rep ++;
-                System.out.println ("La valeur de rep est: "+rep);
-                if (rep >= 4) return true;
-            }
-        }
-        
-        while (j>=1 && i2 >= 1 && i>= 0&& j2>=0 && i<this.ligne-1 && j2<this.colonne-1 && i2 < this.ligne-1 && j<this.colonne){//courbe décroissante
-            
-            if (grille [j][i] == grille[j-1][i+1]// coté gauche en haut
-                || grille [j2][i2] == grille[j2 +1][i2-1]){// coté droit en bas
-                    repetition ++;
-                    System.out.println ("La valeur de repetition est: "+repetition);
-                    if (repetition >= 4) return true;
-                }
-            
-        }
-        return false;
-        */
 }
