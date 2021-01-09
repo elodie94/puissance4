@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Classe représentant la grille du puissance 4
  *
@@ -105,7 +107,8 @@ public class Grille
      */
     
     public int ajout_pion_IA(Joueur b, char [][] grille){
-        for (int i = 1; i<= this.colonne; i++){
+        Random r = new Random();
+        int i = r.nextInt((this.colonne+1)-1) + 1 ;
             
             if (verifier_colonne(grille , i) == false){// Si la colonne n'est pas rempli on l'a parcours
                for (int j =0; j < this.ligne ; j++){
@@ -116,7 +119,7 @@ public class Grille
                  }
               } 
             }
-        }
+        
         return -1;
     }
     /**
