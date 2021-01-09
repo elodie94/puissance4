@@ -1,5 +1,4 @@
 import java.util.Random;
-
 /**
  * Classe représentant la grille du puissance 4
  *
@@ -107,18 +106,20 @@ public class Grille
      */
     
     public int ajout_pion_IA(Joueur b, char [][] grille){
+     
         Random r = new Random();
         int i = r.nextInt((this.colonne+1)-1) + 1 ;
-            
             if (verifier_colonne(grille , i) == false){// Si la colonne n'est pas rempli on l'a parcours
                for (int j =0; j < this.ligne ; j++){
-                 if (grille[i][j] == Case.VIDE.getRep()){ 
-                   grille[i][j] = b.getJeton().getRep();//On place le jeton à la première case libre 
+                 if (grille[i-1][j] == Case.VIDE.getRep()){ 
+                   grille[i-1][j] = b.getJeton().getRep();//On place le jeton à la première case libre 
                    System.out.println (i);
                    return i;
                  }
               } 
             }
+            else ajout_pion_IA (b, grille);
+        
         
         return -1;
     }
@@ -212,34 +213,7 @@ public class Grille
      */
     
       /*public boolean detection_victoire_diago (Joueur b,char[][]grille, int colonne, int ligne){
-        
-      /*    
-       * 
-       * 
-       joueur = grille[0][0].joueur;
-
-		if (joueur != null && grille[1][1].joueur == joueur // décroissante
-				&& grille[2][2].joueur == joueur) {
-
-			return joueur;
-
-		}
-      
        
-       // if (repetition >= 4 || rep >= 4 ) return true;
-        return false;*/
-        
-      // public int droite_en_bas (Joueur b,char[][]grille, int colonne, int ligne){
-          // boolean s = true;
-          // int i = 1;
-          // int repetition = 0;
-          
-          // if( ligne - i >=0 && colonne + i < grille.length){
-              // while (this.ligne - i >= 0 && this.colonne + i < grille.length && s){
-                  // if (!grille[colonne +i].
-                // }
-          
-          
           
         // }
     // }
