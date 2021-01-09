@@ -21,6 +21,7 @@ public class Partie
         if (jouer.equals("Oui") || jouer.equals("OUI") || jouer.equals("oui")){
             Scanner s=new Scanner(System.in);
             System.out.println("Combien de joueurs souhaitent jouer ? (2 joueurs max)");
+            Jeu.saut_ligne();
 
             int jeu;
      
