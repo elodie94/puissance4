@@ -1,10 +1,10 @@
 import java.util.Scanner;
 import java.io.*;
 /**
- * Décrivez votre classe PartieH_H ici.
+ * Classe pour lancer une partie humain contre humain
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author FEQQOUSSI Sarah JOLO Elodie
+ *
  */
 public class PartieH_H
 {
