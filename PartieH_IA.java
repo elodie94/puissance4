@@ -1,10 +1,10 @@
 import java.util.Scanner;
 import java.io.*;
 /**
- * Décrivez votre classe PartieH_IA ici.
+ * classe pour lancer une partie humain contre IA
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author FEQQOUSSI Sarah JOLO Elodie
+ * 
  */
 public class PartieH_IA
 {
