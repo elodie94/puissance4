@@ -2,8 +2,8 @@ import java.util.Scanner;
 /**
  * Cette classe nous permet de lancer une partie 
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author JOLO Elodie, FEQQOUSSI Sarah
+ * @version 09/01/2021
  */
 public class Partie
 {
