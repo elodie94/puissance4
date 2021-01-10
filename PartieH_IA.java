@@ -220,7 +220,7 @@ public class PartieH_IA
                 }
                 else{
                     try { 
-                        Thread.sleep(3000); 
+                        Thread.sleep(900); 
                     } catch (InterruptedException e) { 
                         e.printStackTrace(); 
                     } 
